@@ -14,11 +14,17 @@ CREATE TABLE `zmock` (
 ) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8;
 
 关键字段解释：
+
 Id         序列号，无实际用途
+
 Method    请发方式（支持get、post）
+
 Time       延迟响应时间（以秒为单位）
+
 Url        请求地址路径
+
 Keyword   请求中携带的参数关键字（请求中包含该字段内容即算命中）
+
 Response   响应内容（包括但不限于json格式数据--实际以字符串形式返回预置的响应）
 
 这里添加一条示例
