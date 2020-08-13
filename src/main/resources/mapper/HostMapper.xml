@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.example.lsmock.mapper.HostMapper">
+
+    <select id="findAll" resultType="com.example.lsmock.dao.Host">
+        select * from host
+    </select>
+
+    <select id="addHost" parameterType="com.example.lsmock.dao.Host">
+        INSERT INTO host (host,name,remark) VALUES (#{host},#{name},#{remark})
+    </select>
+
+
+</mapper>

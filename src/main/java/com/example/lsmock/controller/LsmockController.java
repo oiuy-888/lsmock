@@ -1,5 +1,6 @@
 package com.example.lsmock.controller;
 
+import com.example.lsmock.dao.Host;
 import com.example.lsmock.dao.Lsmock;
 import com.example.lsmock.service.LsmockService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import java.io.IOException;
 import java.util.List;
 
 @RestController
+@RequestMapping(value="/mock")
 public class LsmockController {
 
     @Autowired
@@ -96,4 +98,5 @@ public class LsmockController {
         }
         return rep;
     }
+
 }

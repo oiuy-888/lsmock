@@ -1,0 +1,11 @@
+package com.example.lsmock.service;
+
+import com.example.lsmock.dao.Host;
+
+import java.util.List;
+
+public interface HostService {
+
+    public List<Host> findAll();
+    public void addHost(Host host);
+}
