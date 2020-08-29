@@ -8,4 +8,7 @@ public interface HostService {
 
     public List<Host> findAll();
     public void addHost(Host host);
+    public void updateHost(Host host);
+    public void deleteHost(int id);
+    public List<Integer> findHostId();
 }

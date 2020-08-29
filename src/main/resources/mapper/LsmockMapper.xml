@@ -7,5 +7,16 @@
         select * from zmock
     </select>
 
+    <select id="addLsmock" parameterType="com.example.lsmock.dao.Lsmock">
+        INSERT INTO zmock (method,time,url,keyword,respond) VALUES (#{method},#{time},#{url},#{keyword},#{respond})
+    </select>
+
+    <select id="updateLsmock" parameterType="com.example.lsmock.dao.Lsmock">
+        UPDATE zmock (method,time,url,keyword,respond) SET method=#{method},time=#{time},url=#{url},keyword=#{keyword},respond=#{respond} WHERE id=#{id}
+    </select>
+
+    <select id="deleteLsmock" parameterType="java.lang.Integer">
+        DELETE FROM zmock WHERE id=#{id}
+    </select>
 
 </mapper>

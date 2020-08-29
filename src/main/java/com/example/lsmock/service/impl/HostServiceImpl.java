@@ -25,5 +25,19 @@ public class HostServiceImpl implements HostService {
         hostMapper.addHost(host);
     }
 
+    @Override
+    public void updateHost(Host host) {
+        hostMapper.updateHost(host);
+    }
+
+    @Override
+    public void deleteHost(int id) {
+        hostMapper.deleteHost(id);
+    }
+
+    @Override
+    public List<Integer> findHostId() {
+        return hostMapper.findHostId();
+    }
 
 }

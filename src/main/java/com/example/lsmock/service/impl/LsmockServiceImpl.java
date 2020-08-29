@@ -18,4 +18,19 @@ public class LsmockServiceImpl implements LsmockService{
     public List<Lsmock> findAll() {
         return lsmockMapper.findAll();
     }
+
+    @Override
+    public void addLsmock(Lsmock lsmock) {
+        lsmockMapper.addLsmock(lsmock);
+    }
+
+    @Override
+    public void updateLsmock(Lsmock lsmock) {
+        lsmockMapper.updateLsmock(lsmock);
+    }
+
+    @Override
+    public void deleteLsmock(int id) {
+        lsmockMapper.deleteLsmock(id);
+    }
 }
