@@ -7,6 +7,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.PrintWriter;
 import java.util.List;
 
 @Component
@@ -35,7 +36,10 @@ public class LoginInterceptor implements HandlerInterceptor {
         if(userService.verify(header)){
             return true;
         }
+
         return false;
     }
+
+
 
 }

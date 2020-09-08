@@ -1,5 +1,6 @@
 package com.example.lsmock.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
@@ -32,12 +33,12 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public String findByName(User user) {
+    public User findByName(User user) {
         return userMapper.findByName(user);
     }
 
     @Override
-    public String token (String username,String password){
+    public JSONObject token (String username,String password){
         String token;
         try {
             //过期时间
@@ -58,7 +59,9 @@ public class UserServiceImpl implements UserService{
             e.printStackTrace();
             return  null;
         }
-        return token;
+        JSONObject json = new JSONObject();
+        json.put("token",token);
+        return json;
     }
 
     @Override

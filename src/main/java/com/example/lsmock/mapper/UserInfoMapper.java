@@ -9,9 +9,7 @@ import java.util.List;
 
 @Mapper
 @Component
-public interface UserMapper {
+public interface UserInfoMapper {
 
-    public List<User> findAll();
-    public User findByName(User user);
-
+    public UserInfo findByUserId(UserInfo userInfo);
 }

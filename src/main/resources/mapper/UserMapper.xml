@@ -7,8 +7,8 @@
         select * from user
     </select>
 
-    <select id="findByName" parameterType="com.example.lsmock.dao.User" resultType="java.lang.String">
-        select password from user WHERE name=#{name}
+    <select id="findByName" parameterType="com.example.lsmock.dao.User" resultType="com.example.lsmock.dao.User">
+        select * from user WHERE username=#{username}
     </select>
 
 </mapper>
