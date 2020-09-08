@@ -9,7 +9,7 @@ public class UserInfo {
     private String name;
     private String avatar;
     //默认赋值admin权限
-    private static List<String> roles = new ArrayList<String>(){{add("admin");}};
+    private List<String> roles = new ArrayList<String>(){{add("admin");}};
 
     public List<String> getRoles() {
         return roles;
