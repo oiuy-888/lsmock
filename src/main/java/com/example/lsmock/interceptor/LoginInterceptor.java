@@ -17,6 +17,15 @@ public class LoginInterceptor implements HandlerInterceptor {
     @Autowired
     private UserServiceImpl userService;
     private List<String> excludedUrls;
+    private static boolean Handlerresult;
+
+    public boolean isHandlerresult() {
+        return Handlerresult;
+    }
+
+    public void setHandlerresult(boolean handlerresult) {
+        Handlerresult = handlerresult;
+    }
 
     public void setExcludedUrls(List<String> excludedUrls) {
         this.excludedUrls = excludedUrls;
@@ -28,16 +37,20 @@ public class LoginInterceptor implements HandlerInterceptor {
         String uri = httpServletRequest.getRequestURI();
         for (String url : excludedUrls) {
             if (uri.contains(url)) {
+                setHandlerresult(true);
                 return true;
             }
         }
         //需要处理的url
         String header = httpServletRequest.getHeader("X-token");
         if(userService.verify(header)){
+            setHandlerresult(true);
+            return true;
+        }else{
+//            response.setStatus(500);
+            setHandlerresult(false);
             return true;
         }
-
-        return false;
     }
 
 

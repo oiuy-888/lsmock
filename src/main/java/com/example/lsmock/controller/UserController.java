@@ -3,6 +3,7 @@ package com.example.lsmock.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.example.lsmock.dao.User;
 import com.example.lsmock.dao.UserInfo;
+import com.example.lsmock.interceptor.LoginInterceptor;
 import com.example.lsmock.service.UserInfoService;
 import com.example.lsmock.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,8 @@ public class UserController {
     private UserService userService;
     @Autowired
     private UserInfoService userInfoService;
+    @Autowired
+    private LoginInterceptor loginInterceptor;
 
     @RequestMapping(value="login", method = RequestMethod.POST)
     public String addhost(HttpServletRequest request, @RequestBody User user) throws IOException {
@@ -42,8 +45,13 @@ public class UserController {
         UserInfo userinfo = new UserInfo();
         userinfo.setUserId(Integer.valueOf(userid));
         JSONObject json = new JSONObject();
-        json.put("code",20000);
-        json.put("data",userInfoService.findByUserId(userinfo));
+        if (!loginInterceptor.isHandlerresult()){
+            json.put("code",50000);
+            json.put("data","请重新登录");
+        }else{
+            json.put("code",20000);
+            json.put("data",userInfoService.findByUserId(userinfo));
+        }
         return json.toString();
     }
 
