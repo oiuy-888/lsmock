@@ -6,11 +6,11 @@ import com.example.lsmock.dao.UserInfo;
 import com.example.lsmock.interceptor.LoginInterceptor;
 import com.example.lsmock.service.UserInfoService;
 import com.example.lsmock.service.UserService;
+import com.example.lsmock.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @RestController
@@ -40,19 +40,16 @@ public class UserController {
     }
 
     @RequestMapping(value="info", method = RequestMethod.GET)
-    public String finduserinfo(HttpServletRequest request, @RequestParam("userid") String userid) throws IOException {
+    public Result finduserinfo(HttpServletRequest request, @RequestParam("userid") String userid) throws IOException {
         request.setCharacterEncoding("UTF-8");
         UserInfo userinfo = new UserInfo();
         userinfo.setUserId(Integer.valueOf(userid));
         JSONObject json = new JSONObject();
         if (!loginInterceptor.isHandlerresult()){
-            json.put("code",50000);
-            json.put("data","请重新登录");
+            return new Result(Result.Error,Result.ErrorMsg);
         }else{
-            json.put("code",20000);
-            json.put("data",userInfoService.findByUserId(userinfo));
+            return new Result(Result.Success,Result.SuccessMsg,userInfoService.findByUserId(userinfo));
         }
-        return json.toString();
     }
 
 }
