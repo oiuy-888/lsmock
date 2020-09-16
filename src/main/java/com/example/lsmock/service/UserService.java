@@ -9,6 +9,4 @@ public interface UserService {
 
     public List<User> findAll();
     public User findByName(User user);
-    public JSONObject token (String username, String password);
-    public boolean verify(String token);
 }
