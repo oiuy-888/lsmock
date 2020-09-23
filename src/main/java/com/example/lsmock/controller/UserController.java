@@ -31,11 +31,8 @@ public class UserController {
         UserInfo userinfo = new UserInfo();
         userinfo.setUserId(Integer.valueOf(userid));
         JSONObject json = new JSONObject();
-        if (!loginInterceptor.isHandlerresult()){
-            return new Result(Result.Error,Result.ErrorMsg);
-        }else{
-            return new Result(Result.Success,Result.SuccessMsg,userInfoService.findByUserId(userinfo));
-        }
+        return new Result(Result.Success,Result.SuccessMsg,userInfoService.findByUserId(userinfo));
+
     }
 
     @RequestMapping(value="login", method = RequestMethod.POST)
