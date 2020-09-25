@@ -29,7 +29,7 @@ public class HostController {
         try{
             request.setCharacterEncoding("utf-8");
             List<Host> list = hostService.findAll();
-            return new Result(Result.Success,Result.SuccessMsg);
+            return new Result(Result.Success,Result.SuccessMsg,list);
         }catch(Exception e){
             return new Result(Result.Error,Result.ErrorMsg);
         }
