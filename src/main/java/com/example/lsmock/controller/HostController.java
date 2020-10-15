@@ -37,7 +37,7 @@ public class HostController {
 
     
     @RequestMapping(value="updatehost", method = RequestMethod.POST)
-    public Result updateHost(HttpServletRequest request, @RequestBody List<Host> host) {
+    public Result updatehost(HttpServletRequest request, @RequestBody List<Host> host) {
         try{
             request.setCharacterEncoding("UTF-8");
             List<Integer> list = hostService.findHostId();
@@ -69,7 +69,7 @@ public class HostController {
     }
 
     @RequestMapping(value="deletehost", method = RequestMethod.GET)
-    public Result deleteHost(HttpServletRequest request, @RequestParam("id") Integer id) throws IOException {
+    public Result deletehost(HttpServletRequest request, @RequestParam("id") Integer id) throws IOException {
         request.setCharacterEncoding("UTF-8");
         hostService.deleteHost(id);
         JSONObject json = new JSONObject();

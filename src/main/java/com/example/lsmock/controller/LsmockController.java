@@ -23,7 +23,7 @@ public class LsmockController {
     private LsmockService lsmockService;
 
     @RequestMapping(value="addlsmock", method = RequestMethod.POST)
-    public String addhost(HttpServletRequest request, @RequestBody Lsmock lsmock) throws IOException {
+    public String addlsmock(HttpServletRequest request, @RequestBody Lsmock lsmock) throws IOException {
         request.setCharacterEncoding("UTF-8");
         lsmockService.addLsmock(lsmock);
         JSONObject json = new JSONObject();
@@ -33,7 +33,7 @@ public class LsmockController {
     }
 
     @RequestMapping(value="findlsmock", method = RequestMethod.GET)
-    public String addhost(HttpServletRequest request) throws IOException {
+    public String findlsmock(HttpServletRequest request) throws IOException {
         request.setCharacterEncoding("UTF-8");
         List<Lsmock> list = lsmockService.findAll();
         JSONObject json = new JSONObject();
@@ -43,7 +43,7 @@ public class LsmockController {
     }
 
     @RequestMapping(value="deletelsmock", method = RequestMethod.GET)
-    public String deleteHost(HttpServletRequest request, @RequestParam("id") Integer id) throws IOException {
+    public String deletelsmock(HttpServletRequest request, @RequestParam("id") Integer id) throws IOException {
         request.setCharacterEncoding("UTF-8");
         lsmockService.deleteLsmock(id);
         JSONObject json = new JSONObject();

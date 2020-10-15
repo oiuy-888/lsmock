@@ -18,7 +18,7 @@ public class ConsulController {
 
 
     @RequestMapping(value="findconsul", method = RequestMethod.GET)
-    public Result findhost(HttpServletRequest request) {
+    public Result findconsul(HttpServletRequest request) {
         try{
             request.setCharacterEncoding("utf-8");
             List<Consul> list = consulService.findAll();
