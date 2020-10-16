@@ -17,7 +17,7 @@ import java.net.URLDecoder;
 import java.util.List;
 
 @RestController
-@RequestMapping(value="/host")
+@RequestMapping(value="/back-end/host")
 public class HostController {
 
     @Autowired

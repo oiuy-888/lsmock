@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 @RestController
-@RequestMapping(value="/user")
+@RequestMapping(value="/back-end/user")
 public class UserController {
 
     @Autowired

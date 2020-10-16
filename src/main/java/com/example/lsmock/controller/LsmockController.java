@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.util.List;
 
 @RestController
-@RequestMapping(value="/lsmock")
+@RequestMapping(value="/back-end/lsmock")
 public class LsmockController {
 
     @Autowired

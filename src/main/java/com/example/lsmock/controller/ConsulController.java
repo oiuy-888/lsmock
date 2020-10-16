@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
-@RequestMapping(value="/consul")
+@RequestMapping(value="/back-end/consul")
 public class ConsulController {
 
     @Autowired
