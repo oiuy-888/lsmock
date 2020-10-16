@@ -19,4 +19,19 @@ public class ConsulServiceImpl implements ConsulService {
         return consulMapper.findAll();
     }
 
+    @Override
+    public void addConsul(Consul consul) {
+        consulMapper.addConsul(consul);
+    }
+
+    @Override
+    public void updateConsul(Consul consul) {
+        consulMapper.updateConsul(consul);
+    }
+
+    @Override
+    public void deleteConsul(int id) {
+        consulMapper.deleteConsul(id);
+    }
+
 }

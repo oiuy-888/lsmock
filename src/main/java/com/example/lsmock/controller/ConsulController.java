@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -28,4 +29,14 @@ public class ConsulController {
         }
     }
 
+    @RequestMapping(value="addconsul", method = RequestMethod.POST)
+    public Result addlsmock(HttpServletRequest request, @RequestBody Consul consul) throws IOException {
+        try{
+            request.setCharacterEncoding("UTF-8");
+            consulService.addConsul(consul);
+            return new Result(Result.Success,Result.SuccessMsg);
+        }catch(Exception e){
+            return new Result(Result.Error,Result.ErrorMsg);
+        }
+    }
 }

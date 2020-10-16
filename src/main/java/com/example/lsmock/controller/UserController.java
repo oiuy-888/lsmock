@@ -1,9 +1,7 @@
 package com.example.lsmock.controller;
 
-import com.alibaba.fastjson.JSONObject;
 import com.example.lsmock.dao.User;
 import com.example.lsmock.dao.UserInfo;
-import com.example.lsmock.interceptor.LoginInterceptor;
 import com.example.lsmock.service.UserInfoService;
 import com.example.lsmock.service.UserService;
 import com.example.lsmock.utils.Auth;
@@ -22,25 +20,22 @@ public class UserController {
     private UserService userService;
     @Autowired
     private UserInfoService userInfoService;
-    @Autowired
-    private LoginInterceptor loginInterceptor;
 
     @RequestMapping(value="info", method = RequestMethod.GET)
     public Result finduserinfo(HttpServletRequest request, @RequestParam("userid") String userid) throws IOException {
         request.setCharacterEncoding("UTF-8");
         UserInfo userinfo = new UserInfo();
         userinfo.setUserId(Integer.valueOf(userid));
-        JSONObject json = new JSONObject();
         return new Result(Result.Success,Result.SuccessMsg,userInfoService.findByUserId(userinfo));
 
     }
 
     @RequestMapping(value="login", method = RequestMethod.POST)
-    public Result addhost(HttpServletRequest request, @RequestBody User user) throws IOException {
+    public Result login(HttpServletRequest request, @RequestBody User user) throws IOException {
         request.setCharacterEncoding("UTF-8");
         User resultuser = userService.findByName(user);
         resultuser.setToken(Auth.token(user.getUsername(),user.getPassword()));
-        resultuser.setPassword(null);//频闭返回密码值
+        resultuser.setPassword(null);//屏蔽返回密码值
         if((userService.findByName(user).getPassword()).equals(user.getPassword())){
             return new Result(Result.Success,Result.SuccessMsg,resultuser);
         }else {
@@ -48,4 +43,10 @@ public class UserController {
         }
     }
 
+    @RequestMapping(value="logout", method = RequestMethod.GET)
+    public Result logout(HttpServletRequest request) throws IOException {
+        request.setCharacterEncoding("UTF-8");
+        //缺少逻辑处理：调用中间件注销旧的token(中间件删除access_token（废除）)，同时清空客户端侧的access_token
+        return new Result(Result.Success,Result.SuccessMsg);
+    }
 }
