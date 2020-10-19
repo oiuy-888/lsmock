@@ -18,12 +18,23 @@ public class LsmockController {
     private LsmockService lsmockService;
 
     @RequestMapping(value="addlsmock", method = RequestMethod.POST)
-    public Result addlsmock(HttpServletRequest request, @RequestBody Lsmock lsmock) throws IOException {
+    public Result addlsmock(HttpServletRequest request, @RequestBody Lsmock lsmock) {
         try{
             request.setCharacterEncoding("UTF-8");
             lsmockService.addLsmock(lsmock);
             return new Result(Result.Success,Result.SuccessMsg);
         }catch(Exception e){
+            return new Result(Result.Error,Result.ErrorMsg);
+        }
+    }
+
+    @RequestMapping(value = "updatelsmock", method = RequestMethod.POST)
+    public Result updatelsmock(HttpServletRequest request, @RequestBody Lsmock lsmock) {
+        try {
+            request.setCharacterEncoding("UTF-8");
+            lsmockService.updateLsmock(lsmock);
+            return new Result(Result.Success,Result.SuccessMsg);
+        }catch (Exception e){
             return new Result(Result.Error,Result.ErrorMsg);
         }
     }
@@ -39,8 +50,19 @@ public class LsmockController {
         }
     }
 
+    @RequestMapping(value="selelsmock", method = RequestMethod.GET)
+    public Result selelsmock(HttpServletRequest request, @RequestParam("id") Integer id) {
+        try{
+            request.setCharacterEncoding("UTF-8");
+            Lsmock lsmock = lsmockService.findLsmock(id);
+            return new Result(Result.Success,Result.SuccessMsg,lsmock);
+        }catch(Exception e){
+            return new Result(Result.Error,Result.ErrorMsg);
+        }
+    }
+
     @RequestMapping(value="deletelsmock", method = RequestMethod.GET)
-    public Result deletelsmock(HttpServletRequest request, @RequestParam("id") Integer id) throws IOException {
+    public Result deletelsmock(HttpServletRequest request, @RequestParam("id") Integer id) {
         try{
             request.setCharacterEncoding("UTF-8");
             lsmockService.deleteLsmock(id);

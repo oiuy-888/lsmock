@@ -33,4 +33,9 @@ public class LsmockServiceImpl implements LsmockService{
     public void deleteLsmock(int id) {
         lsmockMapper.deleteLsmock(id);
     }
+
+    @Override
+    public Lsmock findLsmock(int id) {
+        return lsmockMapper.findLsmock(id);
+    }
 }

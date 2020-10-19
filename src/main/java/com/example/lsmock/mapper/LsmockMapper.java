@@ -14,4 +14,5 @@ public interface LsmockMapper {
     public void addLsmock(Lsmock lsmock);
     public void updateLsmock(Lsmock lsmock);
     public void deleteLsmock(int id);
+    public Lsmock findLsmock(int id);
 }
