@@ -12,7 +12,7 @@
     </select>
 
     <select id="updateLsmock" parameterType="com.example.lsmock.dao.Lsmock">
-        UPDATE zmock (method,time,url,keyword,respond) SET method=#{method},time=#{time},url=#{url},keyword=#{keyword},respond=#{respond} WHERE id=#{id}
+        UPDATE zmock SET method=#{method},time=#{time},url=#{url},keyword=#{keyword},respond=#{respond} WHERE id=#{id}
     </select>
 
     <select id="deleteLsmock" parameterType="java.lang.Integer">
