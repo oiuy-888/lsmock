@@ -19,7 +19,7 @@
         DELETE FROM zmock WHERE id=#{id}
     </select>
 
-    <select id="findLsmock" parameterType="com.example.lsmock.dao.Lsmock" resultType="com.example.lsmock.dao.Lsmock">
+    <select id="findLsmock" parameterType="java.lang.Integer" resultType="com.example.lsmock.dao.Lsmock">
         select * from zmock WHERE  id=#{id}
     </select>
 

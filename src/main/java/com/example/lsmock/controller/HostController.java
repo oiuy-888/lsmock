@@ -61,4 +61,15 @@ public class HostController {
             return new Result(Result.Error,Result.ErrorMsg);
         }
     }
+
+    @RequestMapping(value="findHost", method = RequestMethod.GET)
+    public Result findHost(HttpServletRequest request, @RequestParam("id") Integer id){
+        try{
+            request.setCharacterEncoding("UTF-8");
+            Host host = hostService.findHost(id);
+            return new Result(Result.Success,Result.SuccessMsg,host);
+        }catch (Exception e){
+            return new Result(Result.Error,Result.ErrorMsg);
+        }
+    }
 }

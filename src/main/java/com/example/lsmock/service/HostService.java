@@ -10,5 +10,5 @@ public interface HostService {
     public void addHost(Host host);
     public void updateHost(Host host);
     public void deleteHost(int id);
-    public List<Integer> findHostId();
+    public Host findHost(int id);
 }

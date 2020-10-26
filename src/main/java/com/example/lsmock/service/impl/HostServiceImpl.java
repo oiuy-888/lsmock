@@ -36,8 +36,8 @@ public class HostServiceImpl implements HostService {
     }
 
     @Override
-    public List<Integer> findHostId() {
-        return hostMapper.findHostId();
+    public Host findHost(int id) {
+        return hostMapper.findHost(id);
     }
 
 }

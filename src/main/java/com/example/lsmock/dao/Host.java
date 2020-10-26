@@ -5,7 +5,7 @@ public class Host {
     private Integer id;
     private String host;
     private String name;
-    private String createruser;
+    private String createuser;
     private String remark;
 
     public String getRemark() {
@@ -41,10 +41,10 @@ public class Host {
     }
 
     public String getCreateruser() {
-        return createruser;
+        return createuser;
     }
 
     public void setCreateruser(String createruser) {
-        this.createruser = createruser;
+        this.createuser = createruser;
     }
 }
