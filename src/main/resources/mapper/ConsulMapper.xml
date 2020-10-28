@@ -8,13 +8,11 @@
     </select>
 
     <select id="addConsul" parameterType="com.example.lsmock.dao.Consul">
-        INSERT INTO consul (uid, name, method, value, interval, timeout)
-        VALUES (#{uid}, #{name}, #{method}, #{value}, #{interval}, #{timeout});
+        INSERT INTO consul (uid, name, method, value, interval, timeout) VALUES (#{uid}, #{name}, #{method}, #{value}, #{interval}, #{timeout})
     </select>
 
     <select id="updateConsul" parameterType="com.example.lsmock.dao.Consul">
-        UPDATE consul (uid, name, method, value, interval, timeout)
-        SET uid=#{uid},name=#{name},method=#{method},value=#{value},interval=#{interval},timeout=#{timeout} WHERE id=#{id}
+        UPDATE consul SET uid=#{uid},name=#{name},method=#{method},value=#{value},interval=#{interval},timeout=#{timeout} WHERE id=#{id}
     </select>
 
     <select id="deleteConsul" parameterType="java.lang.Integer">

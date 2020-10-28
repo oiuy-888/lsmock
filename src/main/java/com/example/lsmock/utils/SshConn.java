@@ -7,16 +7,21 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import org.junit.Test;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+@Component
 public class SshConn {
 
+    @Value("${linux.host}")
+    private String host;
+    @Value("${linux.username}")
+    private String username;
+    @Value("${linux.password}")
+    private String password;
 
-    @Test
     public void linuxssh() throws IOException{
-        String host = "192.168.238.128";
-        String username = "master";
-        String password = "123456";
         // 创建连接
         Connection conn = new Connection(host);
         // 启动连接
