@@ -6,9 +6,6 @@ import com.jayway.jsonpath.JsonPath;
 import com.example.lsmock.dao.DogToken;
 import com.example.lsmock.mapper.DogMapper;
 import com.example.lsmock.service.DogService;
-import com.jd.dd.open.gw.api.GrantService;
-import com.jd.dd.open.gw.api.domain.AccessSignatureResult;
-import com.jd.dd.open.gw.api.domain.AppSigInfo;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
@@ -18,10 +15,8 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -42,8 +37,6 @@ public class DogServiceImpl implements DogService {
     @Value("${dog.token.curcode}")
     private String code;
 
-    @Resource
-    private GrantService grantService;
     @Autowired
     private DogMapper dogMapper;
 
@@ -67,32 +60,21 @@ public class DogServiceImpl implements DogService {
         return dogMapper.findDogCfg();
     }
 
-//    @Override
-//    public String accessToken() throws Exception{
-//        List<BasicNameValuePair> params = new ArrayList<>();
-//        //AppSigInfo对象参数值
-//        params.add(new BasicNameValuePair("aspid", DOG_aspid));//需要申请
-//        params.add(new BasicNameValuePair("secret", DOG_secret));//需要申请
-//        params.add(new BasicNameValuePair("version", DOG_version));
-//
-//        CloseableHttpClient httpclient = HttpClients.createDefault();
-//        HttpPost httpPost = new HttpPost(DOG_token_url);
-//        httpPost.setEntity(new UrlEncodedFormEntity(params));//传参
-//
-//        CloseableHttpResponse response = httpclient.execute(httpPost);
-//        String res = EntityUtils.toString(response.getEntity());
-//        return res;
-//    }
-
-
     @Override
     public String accessToken() throws Exception{
-        AppSigInfo info = new AppSigInfo();
-        info.setAspid(DOG_aspid);//需要申请
-        info.setSecret(DOG_secret);//需要申请
-        info.setVersion(DOG_version);
-        AccessSignatureResult result = grantService.refreshAccessSignature(info);
-        return result.toString();
+        List<BasicNameValuePair> params = new ArrayList<>();
+        //AppSigInfo对象参数值
+        params.add(new BasicNameValuePair("aspid", DOG_aspid));//需要申请
+        params.add(new BasicNameValuePair("secret", DOG_secret));//需要申请
+        params.add(new BasicNameValuePair("version", DOG_version));
+
+        CloseableHttpClient httpclient = HttpClients.createDefault();
+        HttpPost httpPost = new HttpPost(DOG_token_url);
+        httpPost.setEntity(new UrlEncodedFormEntity(params));//传参
+
+        CloseableHttpResponse response = httpclient.execute(httpPost);
+        String res = EntityUtils.toString(response.getEntity());
+        return res;
     }
 
     @Override
@@ -130,7 +112,7 @@ public class DogServiceImpl implements DogService {
         return res;
     }
 
-    @Scheduled(cron="0 30 */2 * * ?")
+//    @Scheduled(cron="0 30 */2 * * ?")
     @Override
     public void addDogToken() throws Exception{
         dogMapper.updateDogToken();
@@ -147,7 +129,5 @@ public class DogServiceImpl implements DogService {
         }
         dogMapper.addDogToken(dogToken);
         }
-
-
 
 }
