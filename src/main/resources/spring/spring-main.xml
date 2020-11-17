@@ -5,5 +5,4 @@
          http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <import resource="classpath:/spring/interceptor/spring-mvc.xml"/>
-<!--    <import resource="classpath:/spring/jsf/spring-jsf.xml"/>-->
 </beans>

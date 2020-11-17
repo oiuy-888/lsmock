@@ -36,29 +36,3 @@ http://IP:PORT/Studentstatus/test?XXX...name=王家齐...XXX
 
 即可获得json格式响应数据
 {\"seqNum\":\"7118112700000566\",\"message\":\"TokenKey验证失败\",\"status\":5}
-
-
-
-
-在resources目录下，添加配置文件
-## 数据源配置
-spring.datasource.url=jdbc:mysql://IP:PORT/test?characterEncoding=UTF-8&serverTimezone=UTC
-spring.datasource.username=
-spring.datasource.password=
-spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
-## 数据库配置
-linux.host=
-linux.username=
-linux.password=
-## Mybatis 配置
-mybatis.typeAliasesPackage=com.example.lsmock.bean
-mybatis.mapperLocations=classpath:mapper/*.xml
-##咚咚配置
-dog.token.url=
-dog.token.aspid=
-dog.token.secret=
-dog.token.version=
-dog.token.curcode=
-dog.send.url=
-###修改指定端口
-server.port=8011
