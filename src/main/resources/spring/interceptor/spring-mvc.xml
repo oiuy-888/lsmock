@@ -13,9 +13,8 @@
             <bean class="com.example.lsmock.interceptor.LoginInterceptor">
                 <property name="excludedUrls">
                     <list>
-                        <value>/login</value>
+                        <value>login</value>
                         <value>mock</value>
-                        <value>dog</value>
                     </list>
                 </property>
             </bean>
