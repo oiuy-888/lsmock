@@ -2,7 +2,7 @@ package com.example.lsmock.dao;
 
 public class User {
 
-    private int id;
+    private Integer id;
     private String username;
     private String password;
     private String token;
