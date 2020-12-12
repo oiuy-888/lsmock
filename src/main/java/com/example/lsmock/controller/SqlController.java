@@ -22,6 +22,7 @@ public class SqlController {
             ArrayList<String> list = jdbcConn.sqlConn(sql);
             return new Result(Result.Success,Result.SuccessMsg,list);
         }catch (Exception e){
+            e.printStackTrace();
             return new Result(Result.Error,Result.ErrorMsg);
         }
     }

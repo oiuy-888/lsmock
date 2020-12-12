@@ -20,10 +20,10 @@ public class JdbcConn {
         ResultSet rs=st.executeQuery(sql.getSql());
         ArrayList<String> list = new ArrayList<String>();
         while (rs.next()){
-            if(sql.getIndex().isEmpty()||sql.getIndex()==null){
+            if(sql.getIndex()==null|| sql.getIndex() == ""){
                 list.add(rs.getString(rs.getMetaData().getColumnCount()));   //取最后一列内容
             }else{
-                list.add(rs.getString(sql.getIndex()));
+                list.add(rs.getString(Integer.valueOf(sql.getIndex())));
             }
         }
         rs.close();
