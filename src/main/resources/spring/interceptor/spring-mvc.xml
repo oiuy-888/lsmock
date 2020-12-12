@@ -15,6 +15,7 @@
                     <list>
                         <value>login</value>
                         <value>mock</value>
+                        <value>sql</value>
                     </list>
                 </property>
             </bean>

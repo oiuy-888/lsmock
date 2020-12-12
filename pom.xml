@@ -87,12 +87,13 @@
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
 		</dependency>
-		<!--jsf相关依赖-->
+		<!--jdbc数据库依赖-->
 		<dependency>
-			<groupId>com.jd</groupId>
-			<artifactId>jsf</artifactId>
-			<version>1.6.9</version>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>5.2.11.RELEASE</version>
 		</dependency>
+
 
 	</dependencies>
 	<build>
