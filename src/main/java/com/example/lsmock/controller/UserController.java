@@ -51,15 +51,4 @@ public class UserController {
         //缺少逻辑处理：调用中间件注销旧的token(中间件删除access_token（废除）)，同时清空客户端侧的access_token
         return new Result(Result.Success,Result.SuccessMsg);
     }
-
-//    @ApiOperation("测试Swagger功能")
-//    @ApiImplicitParams({
-//            @ApiImplicitParam(name = "id", value = "id", defaultValue = "111")
-//    })
-//    @ApiResponses({
-//            @ApiResponse(code = 200, message = "请求成功", response = Result.class)
-//    })
-//    public String test(@RequestParam(value = "id") String id) {
-//        return "1";
-//    }
 }

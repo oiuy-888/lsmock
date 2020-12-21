@@ -30,17 +30,16 @@ public class LoginInterceptor implements HandlerInterceptor {
         }
         //需要处理的url
         String header = httpServletRequest.getHeader("X-token");
-//        if(Auth.verify(header)){
-//            return true;
-//        }else{
-//            httpServletResponse.setContentType("text/html;charset=UTF-8");
-//            JSONObject json = new JSONObject();
-//            json.put("code",50000);
-//            json.put("message","请重新登录");
-//            httpServletResponse.getWriter().print(json);
-//            return false;
+        if(Auth.verify(header)){
             return true;
-//        }
+        }else{
+            httpServletResponse.setContentType("text/html;charset=UTF-8");
+            JSONObject json = new JSONObject();
+            json.put("code",50000);
+            json.put("message","请重新登录");
+            httpServletResponse.getWriter().print(json);
+            return false;
+        }
     }
 
 
