@@ -9,7 +9,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
 @EnableScheduling
-@ComponentScan("com.example.lsmock.config")
+@ComponentScan("com.example.lsmock")
 @MapperScan("com.example.lsmock.mapper")
 @ImportResource("classpath:/spring/*.xml")
 public class LsmockApplication {
