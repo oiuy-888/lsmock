@@ -6,6 +6,7 @@ import com.example.lsmock.service.UserInfoService;
 import com.example.lsmock.service.UserService;
 import com.example.lsmock.utils.Auth;
 import com.example.lsmock.utils.Result;
+import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 @RestController
+@Api(tags = "登录权限API")
 @RequestMapping(value="/back-end/user")
 public class UserController {
 
@@ -49,4 +51,15 @@ public class UserController {
         //缺少逻辑处理：调用中间件注销旧的token(中间件删除access_token（废除）)，同时清空客户端侧的access_token
         return new Result(Result.Success,Result.SuccessMsg);
     }
+
+//    @ApiOperation("测试Swagger功能")
+//    @ApiImplicitParams({
+//            @ApiImplicitParam(name = "id", value = "id", defaultValue = "111")
+//    })
+//    @ApiResponses({
+//            @ApiResponse(code = 200, message = "请求成功", response = Result.class)
+//    })
+//    public String test(@RequestParam(value = "id") String id) {
+//        return "1";
+//    }
 }

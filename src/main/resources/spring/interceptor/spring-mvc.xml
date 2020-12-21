@@ -15,7 +15,7 @@
                     <list>
                         <value>login</value>
                         <value>mock</value>
-                        <value>sql</value>
+                        <value>swagger-ui</value>
                     </list>
                 </property>
             </bean>
