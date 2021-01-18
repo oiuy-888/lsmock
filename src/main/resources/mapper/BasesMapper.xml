@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.example.lsmock.mapper.BasesMapper">
+
+    <select id="findAll" resultType="com.example.lsmock.dao.Bases">
+        select * from bases where delete='0'
+    </select>
+
+    <select id="findBases" resultType="com.example.lsmock.dao.Bases">
+        select * from bases where base=#{base} AND delete='0'
+    </select>
+
+    <select id="addBases" parameterType="com.example.lsmock.dao.Bases">
+        INSERT INTO bases (base,ip) VALUES (#{base}, #{ip})
+    </select>
+
+    <select id="deleteConsul" parameterType="com.example.lsmock.dao.Bases">
+        UPDATE bases SET delete='1' WHERE base=#{base} AND ip=#{ip}
+    </select>
+
+</mapper>
