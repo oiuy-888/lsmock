@@ -4,19 +4,34 @@
 <mapper namespace="com.example.lsmock.mapper.BasesMapper">
 
     <select id="findAll" resultType="com.example.lsmock.dao.Bases">
-        select * from bases where delete='0'
+        select * from bases where is_delete=0
     </select>
 
     <select id="findBases" resultType="com.example.lsmock.dao.Bases">
-        select * from bases where base=#{base} AND delete='0'
+        select * from bases where bases=#{bases} and ip=#{ip} AND is_delete=0
     </select>
 
-    <select id="addBases" parameterType="com.example.lsmock.dao.Bases">
-        INSERT INTO bases (base,ip) VALUES (#{base}, #{ip})
-    </select>
+    <insert id="addBases" parameterType="com.example.lsmock.dao.Bases" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO bases
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            bases,
+            ip,
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            #{bases},
+            #{ip},
+        </trim>
+    </insert>
 
-    <select id="deleteConsul" parameterType="com.example.lsmock.dao.Bases">
-        UPDATE bases SET delete='1' WHERE base=#{base} AND ip=#{ip}
-    </select>
+    <update id="deleteConsul" parameterType="com.example.lsmock.dao.Bases">
+        UPDATE bases
+        <set>
+            <trim prefix="" suffix="" suffixOverrides=",">
+                is_delete=1
+            </trim>
+        </set>
+        WHERE bases=#{bases} AND ip=#{ip} AND is_delete=0
+    </update>
 
 </mapper>

@@ -25,8 +25,12 @@ public class BasesServiceImpl implements BasesService{
     }
 
     @Override
-    public void addBases(Bases bases) {
+    public Integer addBases(Bases bases) {
+        if( findBases(bases) != null){
+            return null;
+        }
         basesMapper.addBases(bases);
+        return bases.getId();
     }
 
     @Override

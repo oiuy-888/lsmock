@@ -8,6 +8,6 @@ public interface BasesService {
 
     public List<Bases> findAll();
     public Bases findBases(Bases bases);
-    public void addBases(Bases bases);
+    public Integer addBases(Bases bases);
     public void deleteBases(Bases bases);
 }

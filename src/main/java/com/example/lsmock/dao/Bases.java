@@ -6,7 +6,7 @@ import lombok.Data;
 public class Bases {
 
     private Integer id;
-    private String base;
+    private String bases;
     private String ip;
     private Integer delete;
 

@@ -45,8 +45,8 @@ public class SqlController {
     public Result addbases(HttpServletRequest request, @RequestBody Bases bases) {
         try {
             request.setCharacterEncoding("UTF-8");
-            basesService.addBases(bases);
-            return new Result(Result.Success,Result.SuccessMsg);
+            Integer id = basesService.addBases(bases);
+            return new Result(Result.Success,Result.SuccessMsg,id);
         }catch (Exception e){
             return new Result(Result.Error,Result.ErrorMsg);
         }
