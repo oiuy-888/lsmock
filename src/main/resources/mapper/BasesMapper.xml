@@ -34,4 +34,27 @@
         WHERE bases=#{bases} AND ip=#{ip} AND is_delete=0
     </update>
 
+    <insert id="addForm" parameterType="com.example.lsmock.dao.FormSql" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO bases
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            bases,
+            ip,
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            #{bases},
+            #{ip},
+        </trim>
+    </insert>
+
+    <update id="deleteForm" parameterType="com.example.lsmock.dao.FormSql">
+        UPDATE bases
+        <set>
+            <trim prefix="" suffix="" suffixOverrides=",">
+                is_delete=1
+            </trim>
+        </set>
+        WHERE bases=#{bases} AND ip=#{ip} AND is_delete=0
+    </update>
+
 </mapper>
