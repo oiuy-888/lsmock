@@ -4,11 +4,24 @@
 <mapper namespace="com.example.lsmock.mapper.BasesMapper">
 
     <select id="findAll" resultType="com.example.lsmock.dao.Bases">
-        select * from bases where is_delete=0
+        select
+        *
+        from bases
+        where is_delete=0
     </select>
 
     <select id="findBases" resultType="com.example.lsmock.dao.Bases">
-        select * from bases where bases=#{bases} and ip=#{ip} AND is_delete=0
+        select
+        *
+        from bases
+        where bases=#{bases} and ip=#{ip} AND is_delete=0
+    </select>
+
+    <select id="findFormsql" resultType="com.example.lsmock.dao.FormSql">
+        select
+        *
+        from form_sql
+        where form=#{form} and formsql=#{sql,jdbcType=VARCHAR} and version=#{version} AND is_delete=0
     </select>
 
     <insert id="addBases" parameterType="com.example.lsmock.dao.Bases" useGeneratedKeys="true" keyProperty="id">
@@ -24,7 +37,7 @@
         </trim>
     </insert>
 
-    <update id="deleteConsul" parameterType="com.example.lsmock.dao.Bases">
+    <update id="deleteBases" parameterType="com.example.lsmock.dao.Bases">
         UPDATE bases
         <set>
             <trim prefix="" suffix="" suffixOverrides=",">
@@ -35,26 +48,41 @@
     </update>
 
     <insert id="addForm" parameterType="com.example.lsmock.dao.FormSql" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO bases
+        INSERT INTO form_sql
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            bases,
-            ip,
+            form,
+            formsql,
+            version,
         </trim>
         VALUES
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            #{bases},
-            #{ip},
+            #{form},
+            #{sql,jdbcType=VARCHAR},
+            #{version},
+        </trim>
+    </insert>
+    
+    <insert id="addBases_Form" parameterType="com.example.lsmock.dao.Bases_FormSql" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO bases_formsql
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            basesId,
+            formsqlId,
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            #{baseId},
+            #{formsqlId},
         </trim>
     </insert>
 
     <update id="deleteForm" parameterType="com.example.lsmock.dao.FormSql">
-        UPDATE bases
+        UPDATE form_sql
         <set>
             <trim prefix="" suffix="" suffixOverrides=",">
                 is_delete=1
             </trim>
         </set>
-        WHERE bases=#{bases} AND ip=#{ip} AND is_delete=0
+        WHERE form=#{form} AND formsql=#{sql,jdbcType=VARCHAR} AND version=#{version} AND is_delete=0
     </update>
 
 </mapper>

@@ -8,6 +8,6 @@ public class Bases {
     private Integer id;
     private String bases;
     private String ip;
-    private Integer delete;
+    private Integer is_delete;
 
 }

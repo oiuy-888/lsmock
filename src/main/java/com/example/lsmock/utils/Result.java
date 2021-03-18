@@ -10,6 +10,7 @@ public class Result implements Serializable{
     public static final Integer Error = 50000;
     public static final String SuccessMsg = "调用成功";
     public static final String ErrorMsg = "调用失败";
+    public static final String ExitMsg = "数据已存在";
 
     private Integer code;
     private String message;

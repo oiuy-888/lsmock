@@ -1,7 +1,7 @@
 package com.example.lsmock.datasource;
 
 import com.example.lsmock.bean.DataSql;
-import com.example.lsmock.dao.Sql;
+import com.example.lsmock.bean.Sql;
 import org.springframework.stereotype.Component;
 
 import java.sql.Connection;

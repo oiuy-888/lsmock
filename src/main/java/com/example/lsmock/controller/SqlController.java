@@ -1,7 +1,9 @@
 package com.example.lsmock.controller;
 
 import com.example.lsmock.dao.Bases;
-import com.example.lsmock.dao.Sql;
+import com.example.lsmock.dao.Bases_FormSql;
+import com.example.lsmock.dao.FormSql;
+import com.example.lsmock.bean.Sql;
 import com.example.lsmock.datasource.JdbcConn;
 import com.example.lsmock.service.BasesService;
 import com.example.lsmock.utils.Result;
@@ -18,6 +20,9 @@ public class SqlController {
     private JdbcConn jdbcConn;
     @Autowired
     private BasesService basesService;
+
+    private static Integer base_id;
+    private static Integer form_id;
 
     @RequestMapping(value="bases", method = RequestMethod.POST)
     public Result getbases(HttpServletRequest request,@RequestBody Sql sql) {
@@ -45,13 +50,34 @@ public class SqlController {
     public Result addbases(HttpServletRequest request, @RequestBody Bases bases) {
         try {
             request.setCharacterEncoding("UTF-8");
-            Integer id = basesService.addBases(bases);
-            return new Result(Result.Success,Result.SuccessMsg,id);
+            if(basesService.findBases(bases)!=null){
+                base_id = basesService.findBases(bases).getId();
+            }else{
+                base_id = basesService.addBases(bases);
+            }
+            return new Result(Result.Success,Result.SuccessMsg,base_id);
         }catch (Exception e){
             return new Result(Result.Error,Result.ErrorMsg);
         }
     }
 
-
+    @RequestMapping(value = "addformsql", method = RequestMethod.POST)
+    public Result addformsql(HttpServletRequest request, @RequestBody FormSql formSql) {
+        try {
+            request.setCharacterEncoding("UTF-8");
+            if(basesService.findFormsql(formSql)!=null){
+                return new Result(Result.Error,Result.ExitMsg);
+            }else{
+                form_id = basesService.addForm(formSql);
+                Bases_FormSql basesFormSql = new Bases_FormSql();
+                basesFormSql.setBaseId(base_id);
+                basesFormSql.setFormsqlId(form_id);
+                basesService.addBases_Form(basesFormSql);
+            }
+            return new Result(Result.Success,Result.SuccessMsg,form_id);
+        }catch (Exception e){
+            return new Result(Result.Error,Result.ErrorMsg);
+        }
+    }
 
 }

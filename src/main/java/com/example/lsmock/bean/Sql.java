@@ -1,4 +1,4 @@
-package com.example.lsmock.dao;
+package com.example.lsmock.bean;
 
 import lombok.Data;
 

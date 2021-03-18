@@ -9,6 +9,6 @@ public class FormSql {
     private String form;
     private String sql;
     private String version;
-    private Integer delete;
+    private Integer is_delete;
 
 }
